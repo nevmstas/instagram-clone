@@ -4,18 +4,18 @@ import { View, Button, TextInput } from "react-native";
 
 import firebase from "firebase";
 
-function Register() {
+function Login() {
   const [values, setValues] = useState({
     email: "",
     password: "",
     name: "",
   });
 
-  const singUp = () => {
-    const { email, password, name } = values;
+  const singIn = () => {
+    const { email, password } = values;
     firebase
       .auth()
-      .createUserWithEmailAndPassword(email, password)
+      .signInWithEmailAndPassword(email, password)
       .then((res) => {
         console.log(res);
       })
@@ -39,9 +39,9 @@ function Register() {
         secureTextEntry={true}
         onChangeText={(password) => setValues({ ...values, password })}
       />
-      <Button onPress={singUp}></Button>
+      <Button onPress={singIn}></Button>
     </View>
   );
 }
 
-export default Register;
+export default Login;
